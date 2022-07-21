@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">    
+</head>
+<body>
+    <div id="main">
+        <div class="listAudio">
+            <!-- sound rain -->
+            <audio src="" class="myAudio" autoplay loop></audio>
+            <!-- sound outStore city traffic / instore keyboard -->
+            <audio src="" class="myAudio" autoplay loop></audio>
+            <!-- song  -->
+            <audio src="" class="myAudio"></audio>
+            <!-- sound keyboard -->
+            <audio src="" class="myAudio" autoplay loop></audio>
+        </div>        
+        <div class="bg">
+            <video src="./assets/video/outStoreMorningSunny.mp4" loop autoplay muted class="bg__vdSun bg__vdMain"></video>
+            <video src="./assets/video/outStoreEveningSunny.mp4" loop autoplay muted class="bg__vdNight"></video>
+            <video src="./assets/video/outStoreEveningRain.mp4" loop autoplay muted class="bg__vdNightRain"></video>
+            <video src="./assets/video/outStoreMorningRain.mp4" loop autoplay muted class="bg__vdSunRain"></video>
+
+            <!-- list video home -->
+            <video src="./assets/video/inStoreMorningSunny.mp4" loop autoplay muted class="bg__vdInStoreSunNoRain"></video>
+            <video src="./assets/video/inStoreMorningRain.mp4" loop autoplay muted class="bg__vdInStoreSunRain"></video>
+            <video src="./assets/video/inStoreEveningSunny.mp4" loop autoplay muted class="bg__vdInStoreNightNoRain"></video>
+            <video src="./assets/video/inStoreEveningRain.mp4" loop autoplay muted class="bg__vdInStoreNightRain"></video>
+        </div>
+        <header class="header">
+            <div class="header__logo">
+                <img src="./assets/img/logoGif.gif" alt="">
+            </div>
+            <div class="header__nav">
+                <div class="btnConvert">
+                    <div class="imgSunny">
+                        <img src="./assets/img/iconSunNav-removebg-preview.png" alt="">
+                    </div>
+                    <div class="imgMoon">
+                        <img src="./assets/img/iconMoonNav-removebg-preview.png" alt="">
+                    </div>
+                    <div class="dot"></div>                    
+                </div>
+
+                <div class="btnConvert inStore">
+                    <div class="imgSunny">
+                        <img src="./assets/img/iconSunNav-removebg-preview.png" alt="">
+                    </div>
+                    <div class="imgMoon">
+                        <img src="./assets/img/iconMoonNav-removebg-preview.png" alt="">
+                    </div>
+                    <div class="dot inStore"></div>                    
+                </div>
+
+                <div class="slogan">
+                    <div class="imgRocket">
+                        <img src="./assets/img/rocketNav.png" alt="">
+                    </div>
+                    <div class="title">
+                        Access +20 scenes
+                        <br>
+                        & more with premium
+                    </div>
+                </div>
+                <div class="btnRegis">
+                    Sign Up
+                </div>
+                <div class="listIcon">
+                    <i class="fa-solid fa-link"></i>
+                    <i class="fa-solid fa-expand btnFullScreen"></i>                    
+                    <i class="fa-solid fa-bars btnMenu"></i>
+                    <ul class="subMenu">
+                        <li><a href="">
+                            <i class="fa-solid fa-user"></i>
+                            <p>Login</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <p>Pricing</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>General setting</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-file-contract"></i>
+                            <p>Contact us</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-gear"></i>
+                            <p>How it work</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-brands fa-spotify importColorIcon"></i>                            
+                            <p>Playlist</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-music"></i>
+                            <p>Submit music</p>
+                        </a></li>
+                        <li><a href="">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <p>About us</p>
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <section class="body">
+            <!-- start dot -->
+            <div class="cityRain">
+                <div class="cityRain__dotBorder"></div>
+                <div class="cityRain__dot"></div>                
+                <div class="cityRain__setting">
+                    <div class="cityRain__title">City Rain</div>
+                    <input type="range" class="cityRain__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+            <div class="cityTraffic">
+                <div class="cityTraffic__dotBorder"></div>
+                <div class="cityTraffic__dot"></div>                
+                <div class="cityTraffic__setting">
+                    <div class="cityTraffic__title">City Traffic</div>
+                    <input type="range" class="cityTraffic__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+            <div class="enter">
+                <div class="enter__dotBorder"></div>
+                <div class="enter__dot"></div>                
+                <div class="enter__setting">
+                    <div class="enter__title">Enter</div>
+                    <input type="range" class="enter__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+
+            <!-- instore -->
+            <!-- fake from out store-->
+            <!-- rain instore -->
+            <div class="cityRain instore">
+                <div class="cityRain__dotBorder"></div>
+                <div class="cityRain__dot instore"></div>                
+                <div class="cityRain__setting instore">
+                    <div class="cityRain__title">City Rain</div>
+                    <input type="range" class="cityRain__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+            <!-- keyboard instore -->
+            <div class="cityTraffic instore">
+                <div class="cityTraffic__dotBorder"></div>
+                <div class="cityTraffic__dot instore"></div>                
+                <div class="cityTraffic__setting instore">
+                    <div class="cityTraffic__title">Keyboard</div>
+                    <input type="range" class="cityTraffic__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+            <!-- go out instore -->
+            <div class="enter instore">
+                <div class="enter__dotBorder"></div>
+                <div class="enter__dot instore"></div>                
+                <div class="enter__setting instore">
+                    <div class="enter__title">Go out</div>
+                    <input type="range" class="enter__range" value="1" min="0" max="100">                    
+                </div>
+            </div>
+            <!-- end dot -->
+
+            <div class="sidebar">
+                <ul class="sidebar__listItems">
+                    <li class="sidebar__itemSetting"><a class="sidebar__itemsMove"><img src="./assets/img/sidebarSetting.png" alt=""></a>
+                        <div class="sidebar__subSetting" onclick="isCheckPropagation(event)">
+                            <h2 class="sidebar__subSetting_statementTitle">Mood</h2>
+                            <ul class="sidebar__subSetting_listImg">
+                                <li class="itemClick"><a>
+                                    <img src="./assets/img/sbSettingSleeppy.png" alt="">
+                                    <p>Sleepy</p>
+                                </a></li>
+                                <li><a>
+                                    <img src="./assets/img/sbSettingFun.png" alt="">
+                                    <p>Jazzy</p>
+                                </a></li>
+                                <li><a>
+                                    <img src="./assets/img/sbSettingChill.png" alt="">
+                                    <p>Chill</p>
+                                </a></li>
+                            </ul>
+                            <div class="sidebar__subSetting_volume">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                                <input type="range" class="volume__Range" min="0" max="100" value="1">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </div>
+                            <h2 class="sidebar__subSetting_mixNoiseTitle">Background Noise</h2>
+                            <div class="sidebar__subSetting_formMix">
+                                <div class="sidebar__subSetting_cityTraffic">
+                                    <label for="">City Traffic</label>
+                                    <input type="range" class="cityTraffic_range" min="0" max="100" value="1">
+                                </div>
+                                <div class="sidebar__subSetting_cityRain">
+                                    <label for="">City Rain</label>
+                                    <input type="range" class="cityRain_range" min="0" max="100" value="1">
+                                </div>
+                                <div class="sidebar__subSetting_keyBoard">
+                                    <label for="">Keyboard</label>
+                                    <input type="range" class="keyBoard_range" min="0" max="100" value="1">
+                                </div>
+                            </div>
+                            <div class="btnMix">
+                                Mix Mode
+                            </div>
+                        </div>
+                    </li>
+                    <li class="sidebar__itemPlaylist"><a class="sidebar__itemsMove"><img src="./assets/img/sidebarPlaylist.png" alt=""></a>
+                        <div class="sidebar__subPlaylist" onclick="isCheckPropagation(event)">
+                            <h2 class="sidebar__subPlaylist_statementTitle">Playlists</h2>
+                            <ul class="sidebar__subPlaylist_listImg">
+                                <li><a><img src="./assets/img/sbSettingChill.png" alt="">
+                                    <p>Chill</p>
+                                </a></li>
+                                <li><a><img src="./assets/img/sbSettingFun.png" alt="">
+                                    <p>Jazzy</p>
+                                </a></li>
+                                <li><a><img src="./assets/img/sbSettingSleeppy.png" alt="">
+                                    <p>Sleepy</p>
+                                </a></li>
+                            </ul>                            
+                            <h2 class="sidebar__subPlaylist_templateTitle">Templates</h2>
+                            <p class="sidebar__subPlaylist_desc">
+                                You haven't saved any templates yet, open the mixer to save one
+                            </p>
+                        </div>
+                    </li>
+                    <li class="sidebar__itemBackground"><a class="sidebar__itemsMove"><img src="./assets/img/sidebarBackground.png" alt=""></a>
+                        <div class="sidebar__subBackground" onclick="isCheckPropagation(event)">
+                            <h2 class="sidebar__subBackground_statementTitle">Change Set</h2>
+                            <ul class="sidebar__subBackground_listImg">
+                                <li><a><img src="./assets/img/sbBackgr1.png" alt=""></a></li>
+                                <li><a><img src="./assets/img/sbBackgr2.png" alt="" class="noSelect"></a></li>
+                                <li><a><img src="./assets/img/sbBackgr3.png" alt="" class="noSelect"></a></li>
+                            </ul>                                                        
+                        </div>
+                    </li>
+                    <li class="noBorder sidebar__itemProduct"><a class="sidebar__itemsMove"><img src="./assets/img/sidebarProductivity.png" alt=""></a>
+                        <div class="sidebar__subProduct" onclick="isCheckPropagation(event)">
+                            <h2 class="sidebar__subProduct_statementTitle">Productivity</h2>
+                            <ul class="sidebar__subProduct_listImg">
+                                <li><a>
+                                    <div class="sidebar__subProduct_func">
+                                        <i class="fa-solid fa-play"></i>
+                                        <p>Start Session</p>
+                                    </div>
+                                    <i class="fa-solid fa-lock"></i>
+                                </a></li>
+                                <li><a>
+                                    <div class="sidebar__subProduct_func">
+                                        <i class="fa-solid fa-hourglass"></i>
+                                        <p>Time and Tasks</p>
+                                    </div>
+                                    <i class="fa-solid fa-lock"></i>
+                                </a></li>
+                                <li><a>
+                                    <div class="sidebar__subProduct_func">
+                                        <i class="fa-solid fa-file-circle-check"></i>
+                                        <p>Notes</p>
+                                    </div>
+                                    <i class="fa-solid fa-lock"></i>
+                                </a></li>
+                                <li><a>
+                                    <div class="sidebar__subProduct_func">
+                                        <i class="fa-solid fa-clock-rotate-left"></i>
+                                        <p>History</p>
+                                    </div>
+                                    <i class="fa-solid fa-lock"></i>
+                                </a></li>
+                            </ul>                                                        
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <h3 class="nameSong">Music by huy 2022@</h3>
+            <div class="musicSong">
+                <i class="fa-solid fa-backward btnPrev"></i>
+                <i class="fa-solid fa-circle-play btnPlay"></i>
+                <i class="fa-solid fa-forward btnNext"></i>
+            </div>
+        </footer>
+    </div>
+    <!-- js -->
+    <script src="./assets/js/home.js"></script>
+</body>
+</html>
