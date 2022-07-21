@@ -238,10 +238,10 @@ var isCheckMenuHeader = false;
 btnMenuHeader.addEventListener("click", function(){
     if(isCheckMenuHeader){
         isCheckMenuHeader = false;
-        subMenuHeader.style.display = "block";
+        subMenuHeader.style.display = "none";
     }else{
         isCheckMenuHeader = true;
-        subMenuHeader.style.display = "none";
+        subMenuHeader.style.display = "block";
     }
 })
 
