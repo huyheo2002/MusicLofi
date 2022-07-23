@@ -21,16 +21,16 @@
             <audio src="" class="myAudio" autoplay loop></audio>
         </div>        
         <div class="bg">
-            <video src="./assets/video/outStoreMorningSunny.mp4" loop autoplay muted class="bg__vdSun bg__vdMain"></video>
-            <video src="./assets/video/outStoreEveningSunny.mp4" loop autoplay muted class="bg__vdNight"></video>
-            <video src="./assets/video/outStoreEveningRain.mp4" loop autoplay muted class="bg__vdNightRain"></video>
-            <video src="./assets/video/outStoreMorningRain.mp4" loop autoplay muted class="bg__vdSunRain"></video>
+            <video src="./assets/video/outStoreMorningSunny.mp4" loop muted autoplay class="bg__vdSun bg__vdMain"></video>
+            <video src="./assets/video/outStoreEveningSunny.mp4" loop muted autoplay class="bg__vdNight"></video>
+            <video src="./assets/video/outStoreEveningRain.mp4" loop muted autoplay class="bg__vdNightRain"></video>
+            <video src="./assets/video/outStoreMorningRain.mp4" loop muted autoplay class="bg__vdSunRain"></video>
 
             <!-- list video home -->
-            <video src="./assets/video/inStoreMorningSunny.mp4" loop autoplay muted class="bg__vdInStoreSunNoRain"></video>
-            <video src="./assets/video/inStoreMorningRain.mp4" loop autoplay muted class="bg__vdInStoreSunRain"></video>
-            <video src="./assets/video/inStoreEveningSunny.mp4" loop autoplay muted class="bg__vdInStoreNightNoRain"></video>
-            <video src="./assets/video/inStoreEveningRain.mp4" loop autoplay muted class="bg__vdInStoreNightRain"></video>
+            <video src="./assets/video/inStoreMorningSunny.mp4" loop muted autoplay class="bg__vdInStoreSunNoRain"></video>
+            <video src="./assets/video/inStoreMorningRain.mp4" loop muted autoplay class="bg__vdInStoreSunRain"></video>
+            <video src="./assets/video/inStoreEveningSunny.mp4" loop muted autoplay class="bg__vdInStoreNightNoRain"></video>
+            <video src="./assets/video/inStoreEveningRain.mp4" loop muted autoplay class="bg__vdInStoreNightRain"></video>
         </div>
         <header class="header">
             <div class="header__logo">
@@ -272,6 +272,13 @@
         </footer>
     </div>
     <!-- js -->
-    <script src="./assets/js/home.js"></script>
+    <script>
+        function isCheckPropagation(e){
+            e.stopPropagation();    
+        }
+    </script>
+    <script src="./assets/js/volumeController.js" type="module"></script>
+    <script src="./assets/js/backgroundController.js" type="module"></script>
+    <script src="./assets/js/home.js" type="module"></script>
 </body>
 </html>

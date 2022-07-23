@@ -1,67 +1,20 @@
+import { VolumeController } from "./VolumeController.js";
+import { BackgroundController } from "./BackgroundController.js";
+// Sidebar
+let sbMusicVolumeRange = new VolumeController(document.querySelector(".volume__Range"));
+let sbKeyboardVolumeRange = new VolumeController(document.querySelector(".keyBoard_range"));
+let sbCityRainVolumeRange = new VolumeController(document.querySelector(".cityRain_range"));
+let sbCityTrafficVolumeRange = new VolumeController(document.querySelector(".cityTraffic_range"));
+// Home
+let hoCityRainVolumeRange = new VolumeController(document.querySelector(".cityRain__range"));
+let hoCityTrafficVolumeRange = new VolumeController(document.querySelector(".cityTraffic__range"));
 
-// sidebar mix mode
-var sbVolumeRange = document.querySelector(".volume__Range");
-var sbRangeKeyboard = document.querySelector(".keyBoard_range");
-var sbRangeCityRain = document.querySelector(".cityRain_range");
-var sbRangeCityTraffic = document.querySelector(".cityTraffic_range");
-sbVolumeRange.addEventListener("mousemove", function(){
-    var x = sbVolumeRange.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, #141414 " + x + "%)";
-    sbVolumeRange.style.background = color;
-})
-sbRangeKeyboard.addEventListener("mousemove", function(){
-    var x = sbRangeKeyboard.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, #141414 " + x + "%)";
-    sbRangeKeyboard.style.background = color;
-})
-sbRangeCityRain.addEventListener("mousemove", function(){
-    var x = sbRangeCityRain.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, #141414 " + x + "%)";
-    sbRangeCityRain.style.background = color;
-})
-sbRangeCityTraffic.addEventListener("mousemove", function(){
-    var x = sbRangeCityTraffic.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, #141414 " + x + "%)";
-    sbRangeCityTraffic.style.background = color;
-})
-
-// home range
-var homeRangeCityRain = document.querySelector(".cityRain__range");
-var homeRangeCityTraffic = document.querySelector(".cityTraffic__range");
-var homeRangeEnter = document.querySelector(".enter__range");
-
+let bgController = new BackgroundController();
+bgController.showBg();
 var audioFirst = document.querySelectorAll(".myAudio")[0];
 var audioSecond = document.querySelectorAll(".myAudio")[1];
 var audioThird = document.querySelectorAll(".myAudio")[2];
 var audioFour = document.querySelectorAll(".myAudio")[3];
-
-homeRangeCityRain.addEventListener("mousemove", function(){
-    var x = homeRangeCityRain.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
-    homeRangeCityRain.style.background = color;
-    homeRangeCityRain.style.background = color;
-    // song rain
-    // audioFirst.src = "./assets/audio/rain_forest.mp3";
-    // audioFirst.volume = x + "%";
-    // audioSecond.volume = x + "%";
-    // audioThird.volume = x + "%";
-    // console.log(audioFirst.volume);
-})
-
-homeRangeCityTraffic.addEventListener("mousemove", function(){
-    var x = homeRangeCityTraffic.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
-    homeRangeCityTraffic.style.background = color;
-    homeRangeCityTraffic.style.background = color;
-    // console.log(color);
-})
-
-homeRangeEnter.addEventListener("mousemove", function(){
-    var x = homeRangeEnter.value;
-    var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
-    homeRangeEnter.style.background = color;
-    homeRangeEnter.style.background = color;
-})
 
 // change morning-evening
 var btnChange = document.querySelector(".btnConvert");
@@ -69,74 +22,31 @@ var btnChangeInstore = document.querySelector(".btnConvert.inStore");
 var dotBtnChange = document.querySelector(".btnConvert .dot");
 var dotBtnChangeInstore = document.querySelector(".btnConvert.inStore .dot");
 
-var bgVideoSunNoRain = document.querySelector(".bg .bg__vdSun");
-var bgVideoNightNoRain = document.querySelector(".bg .bg__vdNight");
-var bgVideoSunRain = document.querySelector(".bg .bg__vdSunRain");
-var bgVideoNightRain = document.querySelector(".bg .bg__vdNightRain");
 var isChangeSunNight = true;
 btnChange.addEventListener("click", function(){
     if(isChangeSunNight){
         // ban dem k mua
         isChangeSunNight = false;
-        if(isClickCityRain){            
-            dotBtnChange.style.transform = "translateX(-100%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            // instore set
-            dotBtnChangeInstore.style.transform = "translateX(-100%)";
-            btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 2;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban đêm k mưa");
-            console.log("Mưa" + isClickCityRain)
-            console.log("Ngày" + isChangeSunNight)
-        }else{
-            // ban dem mua
-            dotBtnChange.style.transform = "translateX(-100%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            // instore set
-            dotBtnChangeInstore.style.transform = "translateX(-100%)";
-            btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 2;
-            console.log("ban đêm mưa");
-            console.log("Mưa" + isClickCityRain)
-            console.log("Ngày" + isChangeSunNight)
-        }
+        
+        dotBtnChange.style.transform = "translateX(-100%)";
+        btnChange.style.background = "rgba(255,255,255,0.1)";
+        // instore set
+        dotBtnChangeInstore.style.transform = "translateX(-100%)";
+        btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
+
+        bgController.isNight = true;
+        bgController.showBg();
     }else{
         // bann ngay ko mua
         isChangeSunNight = true;
-        if(isClickCityRain){            
-            dotBtnChange.style.transform = "translateX(0%)";
-            btnChange.style.background = "#f1a851";
-            // instore set
-            dotBtnChangeInstore.style.transform = "translateX(0%)";
-            btnChangeInstore.style.background = "#f1a851";
-            bgVideoSunNoRain.style.zIndex = 2;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban ko ngày mưa");
-            console.log("Mưa" + isClickCityRain)
-            console.log("Ngày" + isChangeSunNight)
-        }else{
-            // ban ngay mua            
-            dotBtnChange.style.transform = "translateX(0%)";
-            btnChange.style.background = "#f1a851";
-            // instore set
-            dotBtnChangeInstore.style.transform = "translateX(0%)";
-            btnChangeInstore.style.background = "#f1a851";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 2;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban ngày mưa");
-            console.log("Mưa" + isClickCityRain)
-            console.log("Ngày" + isChangeSunNight)
-        }
+        
+        dotBtnChange.style.transform = "translateX(0%)";
+        btnChange.style.background = "#f1a851";
+        // instore set
+        dotBtnChangeInstore.style.transform = "translateX(0%)";
+        btnChangeInstore.style.background = "#f1a851";
+        bgController.isNight = false;
+        bgController.showBg();
     }
 })
 
@@ -144,89 +54,25 @@ btnChangeInstore.addEventListener("click", function(){
     if(isChangeSunNight){
         // ban dem k mua
         isChangeSunNight = false;
-        if(isClickCityRainInstore){            
-            dotBtnChangeInstore.style.transform = "translateX(-100%)";
-            btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-            // out store
-            dotBtnChange.style.transform = "translateX(-100%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban đêm k mưa");
-            console.log("Mưa" + isClickCityRainInstore)
-            console.log("Ngày" + isChangeSunNight)
-
-            // in store
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 2;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }else{
-            // ban dem mua
-            dotBtnChangeInstore.style.transform = "translateX(-100%)";
-            btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-            // out store
-            dotBtnChange.style.transform = "translateX(-100%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban đêm mưa");
-            console.log("Mưa" + isClickCityRainInstore)
-            console.log("Ngày" + isChangeSunNight)
-            
-            // in store
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 2
-        }
+        
+        dotBtnChangeInstore.style.transform = "translateX(-100%)";
+        btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
+        // out store
+        dotBtnChange.style.transform = "translateX(-100%)";
+        btnChange.style.background = "rgba(255,255,255,0.1)";
+        bgController.isNight = true;
+        bgController.showBg();
     }else{
         // bann ngay ko mua
         isChangeSunNight = true;
-        if(isClickCityRainInstore){            
-            dotBtnChangeInstore.style.transform = "translateX(0%)";
-            btnChangeInstore.style.background = "#f1a851";
-            // out store
-            dotBtnChange.style.transform = "translateX(0%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban ko ngày mưa");
-            console.log("Mưa" + isClickCityRainInstore)
-            console.log("Ngày" + isChangeSunNight)
-
-            //in store
-            bgVideoSunNoRainInstore.style.zIndex = 2;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }else{
-            // ban ngay mua            
-            dotBtnChangeInstore.style.transform = "translateX(0%)";
-            btnChangeInstore.style.background = "#f1a851";
-            // out store
-            dotBtnChange.style.transform = "translateX(0%)";
-            btnChange.style.background = "rgba(255,255,255,0.1)";
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-            console.log("ban ngày mưa");
-            console.log("Mưa" + isClickCityRainInstore)
-            console.log("Ngày" + isChangeSunNight)
-
-            // instore
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 2;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }
+        
+        dotBtnChangeInstore.style.transform = "translateX(0%)";
+        btnChangeInstore.style.background = "#f1a851";
+        // out store
+        dotBtnChange.style.transform = "translateX(0%)";
+        btnChange.style.background = "rgba(255,255,255,0.1)";
+        bgController.isNight = false;
+        bgController.showBg();
     }
 })
 
@@ -292,20 +138,9 @@ getDotCityRain.addEventListener("click", function(){
         getRangeCityRain.style.display = "block";
         // doi ban ngay co mua
         // ngay true dem false
-        // bgVideoSunNoRain.src = "./assets/video/outStoreMorningRain.mp4";        
-        if(isChangeSunNight){
-            // ban ngay
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 2;
-            bgVideoNightRain.style.zIndex = 1;
-        }else{
-            // ban dem
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 2;
-        }     
+        // bgVideoSunNoRain.src = "./assets/video/outStoreMorningRain.mp4";      
+        bgController.isRaining = true;
+        bgController.showBg();  
 
         // method
         getSettingCityRain.addEventListener("mouseout", function(){
@@ -317,32 +152,9 @@ getDotCityRain.addEventListener("click", function(){
             }else{
                 isClickCityRain = true;
                 getRangeCityRain.style.display = "none";
-                // dung fixx 1
-                // doi tuong hien tai
-                // => ngay = true, dem = false : mua = true, k mua = false                    
-                // nut thay doi ban ngay/dem
-                // dem = false ; ko mua = true; ngay = true; mua = false
-                // con loi (luc troi mua giảm âm thanh chuyên buôi sáng => tối => lỗi)            
-                // fix thanh cong
-                if(isChangeSunNight){
-                    // ban ngay (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 2;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    console.log("ban ngày");
-                    console.log("Mưa" + isClickCityRain)
-                    console.log("Ngày" + isChangeSunNight)
-                }else{                                        
-                    // ban dem (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 2;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    console.log("ban dem");
-                    console.log("Mưa" + isClickCityRain)
-                    console.log("Ngày" + isChangeSunNight)
-                }                
+                
+                bgController.isRaining = false;
+                bgController.showBg();        
             }
         })
         getDotCityRain.addEventListener("mouseout", function(){
@@ -352,29 +164,14 @@ getDotCityRain.addEventListener("click", function(){
                 }
             }else{
                 getRangeCityRain.style.display = "none";
-                if(isChangeSunNight){
-                    // ban ngay
-                    bgVideoSunNoRain.style.zIndex = 2;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    if(isClickCityRain){
-                        isClickCityRain = false;
-                    }else{
-                        isClickCityRain = true;
-                    }
+                
+                bgController.isRaining = false;
+                bgController.showBg();
+                if(isClickCityRain){
+                    isClickCityRain = false;
                 }else{
-                    // ban dem
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 2;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    if(isClickCityRain){
-                        isClickCityRain = false;
-                    }else{
-                        isClickCityRain = true;
-                    }
-                }                                                                   
+                    isClickCityRain = true;
+                }                                                               
             }
         })        
         getRangeCityRain.addEventListener("mousemove", function(){
@@ -405,35 +202,14 @@ getDotCityRain.addEventListener("click", function(){
                 // getRangeCityRain.style.display = "block";                               
             }else{
                 getRangeCityRain.style.display = "none";
-                if(isChangeSunNight){
-                    // ban ngay (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 2;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    if(isClickCityRain){
-                        isClickCityRain = false;
-                    }else{
-                        isClickCityRain = true;
-                    }
-                    console.log("ban ngày");
-                    console.log("Mưa" + isClickCityRain)
-                    console.log("Ngày" + isChangeSunNight)
-                }else{                                        
-                    // ban dem (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 2;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    if(isClickCityRain){
-                        isClickCityRain = false;
-                    }else{
-                        isClickCityRain = true;
-                    }
-                    console.log("ban dem");
-                    console.log("Mưa" + isClickCityRain)
-                    console.log("Ngày" + isChangeSunNight)
-                }                
+                
+                bgController.isRaining = false;
+                bgController.showBg();
+                if(isClickCityRain){
+                    isClickCityRain = false;
+                }else{
+                    isClickCityRain = true;
+                }                  
             }
         })
         getDotCityRain.addEventListener("mouseout", function(){
@@ -452,19 +228,8 @@ getDotCityRain.addEventListener("click", function(){
             audioFirst.volume = x/100;
             // console.log(audioFirst.volume);                      
         })
-        if(isChangeSunNight){
-            // ban ngay
-            bgVideoSunNoRain.style.zIndex = 2;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-        }else{
-            // ban dem
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 2;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-        }         
+        bgController.isRaining = false;
+        bgController.showBg();
     }
 })
 
@@ -539,31 +304,9 @@ getDotEnter.addEventListener("click", function(){
     audioSecond.src = "";
     getRangeCityTraffic.style.display = "none";
     
-    if(isClickCityRain == true && isChangeSunNight == true){
-        isClickCityRainInstore = true;
-        bgVideoSunNoRainInstore.style.zIndex = 2;
-        bgVideoSunRainInstore.style.zIndex = 1;
-        bgVideoNightNoRainInstore.style.zIndex = 1;
-        bgVideoNightRainInstore.style.zIndex = 1;
-    }else if(isClickCityRain == true && isChangeSunNight == false){
-        isClickCityRainInstore = true;
-        bgVideoSunNoRainInstore.style.zIndex = 1;
-        bgVideoSunRainInstore.style.zIndex = 1;
-        bgVideoNightNoRainInstore.style.zIndex = 2;
-        bgVideoNightRainInstore.style.zIndex = 1;
-    }else if(isClickCityRain == false && isChangeSunNight == false){
-        isClickCityRainInstore = false;
-        bgVideoSunNoRainInstore.style.zIndex = 1;
-        bgVideoSunRainInstore.style.zIndex = 1;
-        bgVideoNightNoRainInstore.style.zIndex = 1;
-        bgVideoNightRainInstore.style.zIndex = 2;
-        getRangeCityRainInStore.style.display = "block";
-    }else{
-        isClickCityRainInstore = false;
-        bgVideoSunNoRainInstore.style.zIndex = 1;
-        bgVideoSunRainInstore.style.zIndex = 2;
-        bgVideoNightNoRainInstore.style.zIndex = 1;
-        bgVideoNightRainInstore.style.zIndex = 1;
+    bgController.instore = true;
+    bgController.showBg();
+    if(isClickCityRain == false){
         getRangeCityRainInStore.style.display = "block";
     }
 
@@ -579,15 +322,6 @@ getDotEnter.addEventListener("click", function(){
     getCityRainInStore.style.display = "block";
     getKeyboardInStore.style.display = "block";
     getGoOutInStore.style.display = "block";
-        
-    // out store
-    bgVideoSunNoRain.style.zIndex = 1;
-    bgVideoNightNoRain.style.zIndex = 1;
-    bgVideoSunRain.style.zIndex = 1;
-    bgVideoNightRain.style.zIndex = 1;
-
-    console.log("ngày " + isChangeSunNight);
-    console.log("ngày " + isClickCityRain);
 
     // rain kéo xuống trong instore
     getRangeCityRainInStore.addEventListener("mousemove", function(){
@@ -607,42 +341,14 @@ getDotEnter.addEventListener("click", function(){
             }                    
         }else{
             getRangeCityRainInStore.style.display = "none";
-            if(isChangeSunNight){
-                // ban ngay
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 2;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-                if(isClickCityRainInstore){
-                    isClickCityRainInstore = false;
-                }else{
-                    isClickCityRainInstore = true;
-                }
+            
+            bgController.isRaining = false;
+            bgController.showBg();
+            if(isClickCityRainInstore){
+                isClickCityRainInstore = false;
             }else{
-                // ban dem
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 2;
-                bgVideoNightRainInstore.style.zIndex = 1;
-
-                if(isClickCityRainInstore){
-                    isClickCityRainInstore = false;
-                }else{
-                    isClickCityRainInstore = true;
-                }
-            }                                                                   
+                isClickCityRainInstore = true;
+            }                                                                
         }
     })  
 
@@ -680,33 +386,8 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         // doi ban ngay co mua
         // ngay true dem false
         // bgVideoSunNoRain.src = "./assets/video/outStoreMorningRain.mp4";        
-        if(isChangeSunNight){
-            // ban ngay
-            // out store
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-
-            // instore
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 2;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }else{
-            // ban dem
-            // out store
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-
-            // instore
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 2;
-        }     
+        bgController.isRaining = true;
+        bgController.showBg();  
 
         // method
         getSettingCityRainInStore.addEventListener("mouseout", function(){
@@ -719,45 +400,9 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
             }else{
                 isClickCityRainInstore = true;
                 getRangeCityRainInStore.style.display = "none";
-                // dung fixx 1
-                // doi tuong hien tai
-                // => ngay = true, dem = false : mua = true, k mua = false                    
-                // nut thay doi ban ngay/dem
-                // dem = false ; ko mua = true; ngay = true; mua = false
-                // con loi (luc troi mua giảm âm thanh chuyên buôi sáng => tối => lỗi)            
-                // fix thanh cong
-                if(isChangeSunNight){
-                    // ban ngay (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 2;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 1;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-                    console.log("ban ngày");
-                    console.log("Mưa" + isClickCityRainInstore)
-                    console.log("Ngày" + isChangeSunNight)
-                }else{                                        
-                    // ban dem (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-                    
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 1;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 2;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-
-                    console.log("ban dem");
-                    console.log("Mưa" + isClickCityRainInstore)
-                    console.log("Ngày" + isChangeSunNight)
-                }                
+                
+                bgController.isRaining = false;
+                bgController.showBg();
             }
         })
         getDotCityRainInStore.addEventListener("mouseout", function(){
@@ -768,42 +413,15 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
                 }                    
             }else{
                 getRangeCityRainInStore.style.display = "none";
-                if(isChangeSunNight){
-                    // ban ngay
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
 
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 2;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 1;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-                    if(isClickCityRainInstore){
-                        isClickCityRainInstore = false;
-                    }else{
-                        isClickCityRainInstore = true;
-                    }
+                bgController.isRaining = false;
+                bgController.showBg();
+                
+                if(isClickCityRainInstore){
+                    isClickCityRainInstore = false;
                 }else{
-                    // ban dem
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 1;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 2;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-
-                    if(isClickCityRainInstore){
-                        isClickCityRainInstore = false;
-                    }else{
-                        isClickCityRainInstore = true;
-                    }
-                }                                                                   
+                    isClickCityRainInstore = true;
+                }                                                                
             }
         })        
         getRangeCityRainInStore.addEventListener("mousemove", function(){
@@ -833,47 +451,13 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
                 // getRangeCityRainInStore.style.display = "block";                               
             }else{
                 getRangeCityRainInStore.style.display = "none";
-                if(isChangeSunNight){
-                    // ban ngay (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 2;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 1;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-                    if(isClickCityRainInstore){
-                        isClickCityRainInstore = false;
-                    }else{
-                        isClickCityRainInstore = true;
-                    }
-                    console.log("ban ngày");
-                    console.log("Mưa" + isClickCityRainInstore)
-                    console.log("Ngày" + isChangeSunNight)
-                }else{                                        
-                    // ban dem (ban cu)
-                    bgVideoSunNoRain.style.zIndex = 1;
-                    bgVideoNightNoRain.style.zIndex = 1;
-                    bgVideoSunRain.style.zIndex = 1;
-                    bgVideoNightRain.style.zIndex = 1;
-
-                    // instore
-                    bgVideoSunNoRainInstore.style.zIndex = 1;
-                    bgVideoSunRainInstore.style.zIndex = 1;
-                    bgVideoNightNoRainInstore.style.zIndex = 2;
-                    bgVideoNightRainInstore.style.zIndex = 1;
-                    if(isClickCityRainInstore){
-                        isClickCityRainInstore = false;
-                    }else{
-                        isClickCityRainInstore = true;
-                    }
-                    console.log("ban dem");
-                    console.log("Mưa" + isClickCityRainInstore)
-                    console.log("Ngày" + isChangeSunNight)
-                }                
+                bgController.isRaining = false;
+                bgController.showBg();
+                if(isClickCityRainInstore){
+                    isClickCityRainInstore = false;
+                }else{
+                    isClickCityRainInstore = true;
+                }             
             }
         })
         getDotCityRainInStore.addEventListener("mouseout", function(){
@@ -892,31 +476,8 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
             audioFirst.volume = x/100;
             // console.log(audioFirst.volume);                      
         })
-        if(isChangeSunNight){
-            // ban ngay
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 1;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-
-            // instore
-            bgVideoSunNoRainInstore.style.zIndex = 2;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 1;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }else{
-            // ban dem
-            bgVideoSunNoRain.style.zIndex = 1;
-            bgVideoNightNoRain.style.zIndex = 2;
-            bgVideoSunRain.style.zIndex = 1;
-            bgVideoNightRain.style.zIndex = 1;
-
-            // instore
-            bgVideoSunNoRainInstore.style.zIndex = 1;
-            bgVideoSunRainInstore.style.zIndex = 1;
-            bgVideoNightNoRainInstore.style.zIndex = 2;
-            bgVideoNightRainInstore.style.zIndex = 1;
-        }         
+        bgController.isRaining = false;
+        bgController.showBg();     
     }
 })
 
@@ -975,31 +536,9 @@ getDotGoOut.addEventListener("click", function(){
     // tắt tiếng keyboard
     audioFour.src = "";
     getRangeKeyboardInStore.style.display = "none";
-    if(isClickCityRainInstore == true && isChangeSunNight == true){
-        // out store
-        bgVideoSunNoRain.style.zIndex = 2;
-        bgVideoNightNoRain.style.zIndex = 1;
-        bgVideoSunRain.style.zIndex = 1;
-        bgVideoNightRain.style.zIndex = 1;
-    }else if(isClickCityRainInstore == true && isChangeSunNight == false){
-        // out store
-        bgVideoSunNoRain.style.zIndex = 1;
-        bgVideoNightNoRain.style.zIndex = 2;
-        bgVideoSunRain.style.zIndex = 1;
-        bgVideoNightRain.style.zIndex = 1;
-    }else if(isClickCityRainInstore == false && isChangeSunNight == false){
-        // out store
-        bgVideoSunNoRain.style.zIndex = 1;
-        bgVideoNightNoRain.style.zIndex = 1;
-        bgVideoSunRain.style.zIndex = 1;
-        bgVideoNightRain.style.zIndex = 2;
-        getRangeCityRain.style.display = "block";
-    }else{
-        // out store
-        bgVideoSunNoRain.style.zIndex = 1;
-        bgVideoNightNoRain.style.zIndex = 1;
-        bgVideoSunRain.style.zIndex = 2;
-        bgVideoNightRain.style.zIndex = 1;
+    bgController.instore = false;
+    bgController.showBg();
+    if(isClickCityRainInstore == false){
         getRangeCityRain.style.display = "block";
     }
 
@@ -1015,12 +554,6 @@ getDotGoOut.addEventListener("click", function(){
     getCityRainInStore.style.display = "none";
     getKeyboardInStore.style.display = "none";
     getGoOutInStore.style.display = "none";
-            
-    // instore
-    bgVideoSunNoRainInstore.style.zIndex = 1;
-    bgVideoSunRainInstore.style.zIndex = 1;
-    bgVideoNightNoRainInstore.style.zIndex = 1;
-    bgVideoNightRainInstore.style.zIndex = 1;
     
     // load range out store
     var x = getRangeCityRainInStore.value;
@@ -1036,29 +569,13 @@ getDotGoOut.addEventListener("click", function(){
             }
         }else{
             getRangeCityRain.style.display = "none";
-            if(isChangeSunNight){
-                // ban ngay
-                bgVideoSunNoRain.style.zIndex = 2;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-                if(isClickCityRain){
-                    isClickCityRain = false;
-                }else{
-                    isClickCityRain = true;
-                }
+            bgController.isRaining = false;
+            bgController.showBg();
+            if(isClickCityRain){
+                isClickCityRain = false;
             }else{
-                // ban dem
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 2;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-                if(isClickCityRain){
-                    isClickCityRain = false;
-                }else{
-                    isClickCityRain = true;
-                }
-            }                                                                   
+                isClickCityRain = true;
+            }                                                             
         }
     })  
 })
@@ -1154,19 +671,6 @@ window.addEventListener("load", function(){
     soundKeyboardRangeSetting.value = 0;
     getRangeVolumeSong.value = 0;
     soundRainRangeSetting.value = 0;
-
-    // load instore
-    // bgVideoSunNoRain.style.zIndex = 1;
-    // bgVideoNightNoRain.style.zIndex = 1;
-    // bgVideoSunRain.style.zIndex = 1;
-    // bgVideoNightRain.style.zIndex = 1;
-
-    // // load outstore
-    bgVideoSunNoRainInstore.style.zIndex = 1;
-    bgVideoSunRainInstore.style.zIndex = 1;
-    bgVideoNightNoRainInstore.style.zIndex = 1;
-    bgVideoNightRainInstore.style.zIndex = 1;
-    
 })
 
 // keyboard setting sound
@@ -1248,7 +752,7 @@ soundRainRangeSetting.addEventListener("click", function(){
     audioFirst.volume = 0;
 })
 soundRainRangeSetting.addEventListener("mousemove", function(){
-    if(bgVideoSunNoRain.style.zIndex == 1 && bgVideoNightNoRain.style.zIndex == 1 && bgVideoSunRain.style.zIndex == 1 && bgVideoNightRain.style.zIndex == 1){
+    if(bgController.instore == true){
         // trong cua hang
         if(soundRainRangeSetting.value > 0){
             // troi mua
@@ -1270,31 +774,8 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
                 soundRainRangeSetting.value = x;            
             })
             // ban ngay true // dem false
-            if(isChangeSunNight){                
-                // ban ngay mua trong cua hang
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 2;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            }else{
-                // ban dem mua trong cua hang
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 2;
-            }
+            bgController.isRaining = true;
+            bgController.showBg();
         }else{
             isClickCityRainInstore = true;
             console.log(soundRainRangeSetting.value);
@@ -1303,31 +784,8 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             soundRainRangeSetting.value = 0;
             audioFirst.src = "";
             // ban ngay true // dem false
-            if(isChangeSunNight){                
-                // ban ngay k mua
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 2;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            }else{
-                // ban dem k mua
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 2;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            } 
+            bgController.isRaining = false;
+            bgController.showBg();
         }        
         
     }        
@@ -1370,31 +828,8 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
                 soundRainRangeSetting.value = x;
             })
             // ban ngay true // dem false
-            if(isChangeSunNight){                
-                // ban ngay mua ngoai cua hang
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 2;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            }else{
-                // ban dem mua ngoai cua hang
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 2;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            }
+            bgController.isRaining = true;
+            bgController.showBg();
         }else{
             isClickCityRain = true;
             console.log(soundRainRangeSetting.value);
@@ -1403,39 +838,12 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             soundRainRangeSetting.value = 0;
             audioFirst.src = "";
             // ban ngay true // dem false
-            if(isChangeSunNight){                
-                // ban ngay k mua
-                bgVideoSunNoRain.style.zIndex = 2;
-                bgVideoNightNoRain.style.zIndex = 1;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            }else{
-                // ban dem k mua
-                bgVideoSunNoRain.style.zIndex = 1;
-                bgVideoNightNoRain.style.zIndex = 2;
-                bgVideoSunRain.style.zIndex = 1;
-                bgVideoNightRain.style.zIndex = 1;
-    
-                // instore
-                bgVideoSunNoRainInstore.style.zIndex = 1;
-                bgVideoSunRainInstore.style.zIndex = 1;
-                bgVideoNightNoRainInstore.style.zIndex = 1;
-                bgVideoNightRainInstore.style.zIndex = 1;
-            } 
+            bgController.isRaining = false;
+            bgController.showBg();
         }        
         
     }           
 })
-
-function isCheckPropagation(e){
-    e.stopPropagation();    
-}
 
 
 // SONG
