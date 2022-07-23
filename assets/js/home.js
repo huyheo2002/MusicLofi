@@ -133,7 +133,9 @@ getDotCityRain.addEventListener("click", function(){
         // ko mua
         isClickCityRain = true;
         getRangeCityRain.style.display = "none";
-        audioCityRain.src = "";        
+        audioCityRain.src = "";       
+        soundRainRangeSetting.value = 0;
+        soundRainRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)'; 
         getSettingCityRain.addEventListener("mouseout", function(){
             if(audioCityRain.volume > 0){
                 // getRangeCityRain.style.display = "block";                               
@@ -208,6 +210,8 @@ getDotCityTraffic.addEventListener("click", function(){
         isClickCityTraffic = true;
         getRangeCityTraffic.style.display = "none";
         audioCityTraffic.src = "";
+        soundCityTrafficRangeSetting.value = 0;
+        soundCityTrafficRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)';        
         getSettingCityTraffic.addEventListener("mouseout", function(){
             getRangeCityTraffic.style.display = "none";
         })
@@ -359,7 +363,9 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         // ko mua
         isClickCityRainInstore = true;
         getRangeCityRainInStore.style.display = "none";
-        audioCityRain.src = "";        
+        audioCityRain.src = "";
+        soundRainRangeSetting.value = 0;
+        soundRainRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)';        
         getSettingCityRainInStore.addEventListener("mouseout", function(){
             if(audioCityRain.volume > 0){
                 // getRangeCityRainInStore.style.display = "block";                               
