@@ -229,9 +229,7 @@ var getCityRainInStore = document.querySelector(".cityRain.instore");
 var getKeyboardInStore = document.querySelector(".cityTraffic.instore");
 var getGoOutInStore = document.querySelector(".enter.instore");
 getDotEnter.addEventListener("click", function(){
-    // dem = false ; ko mua = true; ngay = true; mua = false
     // set default
-    // tat tieng xe cọ :V
     audioCityTraffic.src = "";
     getRangeCityTraffic.style.display = "none";
     
@@ -261,7 +259,6 @@ getDotEnter.addEventListener("click", function(){
     //hover dot instore
     getDotCityRainInStore.addEventListener("mouseout", function(){
         if(audioCityRain.volume > 0){
-            // getRangeCityRainInStore.style.display = "block";
             if(isClickCityRainInstore == false){
                 getRangeCityRainInStore.style.display = "block";                  
             }                    
@@ -305,18 +302,13 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         getRangeCityRainInStore.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         soundRainRangeSetting.value = 50;
         soundRainRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
-        getRangeCityRainInStore.style.display = "block";
-        // doi ban ngay co mua
-        // ngay true dem false
-        // bgVideoSunNoRain.src = "./assets/video/outStoreMorningRain.mp4";        
+        getRangeCityRainInStore.style.display = "block";     
         bgController.isRaining = true;
         bgController.showBg();  
 
         // method
         getSettingCityRainInStore.addEventListener("mouseout", function(){
             if(audioCityRain.volume > 0){
-                // isClickCityRainInstore = true;
-                // getRangeCityRainInStore.style.display = "block";
                 if(isClickCityRainInstore == false){
                     getRangeCityRainInStore.style.display = "block";                  
                 }                               
@@ -711,16 +703,7 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             soundRainRangeSetting.style.background = color;
             audioCityRain.volume = x/100;
             getRangeCityRain.style.background = color;
-            getRangeCityRain.value = x;        
-            // getRangeCityRain.addEventListener("mousemove", function(){
-            //     var x = getRangeCityRain.value;
-            //     var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
-            //     getRangeCityRain.style.background = color;
-            //     audioCityRain.volume = x/100;
-
-            //     soundRainRangeSetting.style.background = color;
-            //     soundRainRangeSetting.value = x;            
-            // })
+            getRangeCityRain.value = x;                    
             getRangeCityRain.addEventListener("mousemove", function(){
                 // load range out store
                 var x = getRangeCityRain.value;
@@ -841,7 +824,6 @@ var getItemMusicChill = document.querySelectorAll(".sidebar__subSetting_listImg 
 window.addEventListener("load", function(){    
     getNameSong.innerHTML = songSleepy[currentSong].name;
     audioMusic.src = songSleepy[currentSong].path;
-    // getItemMusicSleepy.click();
     getItemMusicSleepy.classList.add("itemClick");
     getItemMusicJazzy.classList.remove("itemClick");
     getItemMusicChill.classList.remove("itemClick");
@@ -850,11 +832,6 @@ window.addEventListener("load", function(){
     isClickItemMusicChill = true;
     
 })
-
-// function loadCurrentSong(){
-//     getNameSong.innerHTML = songSleepy[currentSong].name;
-//     audioMusic.src = songSleepy[currentSong].path;
-// }
 
 var isClickItemMusicSleepy = true;
 var isClickItemMusicJazzy = false;
