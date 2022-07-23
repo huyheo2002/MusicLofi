@@ -944,6 +944,13 @@ getBtnPlay.addEventListener("click", function clickBtnSong(){
         getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)'
     }    
 })
+// fix range song
+getRangeVolumeSong.addEventListener("mousemove", function(){
+    var x = getRangeVolumeSong.value;
+    var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
+    getRangeVolumeSong.style.background = color;
+    audioMusic.volume = x/100;
+})
 
 getBtnNext.addEventListener("click", function (){
     // load music sleepy
