@@ -1,88 +1,37 @@
-import { VolumeController } from "./VolumeController.js";
 import { BackgroundController } from "./BackgroundController.js";
-// Sidebar
-let sbMusicVolumeRange = new VolumeController(document.querySelector(".volume__Range"));
-let sbKeyboardVolumeRange = new VolumeController(document.querySelector(".keyBoard_range"));
-let sbCityRainVolumeRange = new VolumeController(document.querySelector(".cityRain_range"));
-let sbCityTrafficVolumeRange = new VolumeController(document.querySelector(".cityTraffic_range"));
-// Home
-let hoCityRainVolumeRange = new VolumeController(document.querySelector(".cityRain__range"));
-let hoCityTrafficVolumeRange = new VolumeController(document.querySelector(".cityTraffic__range"));
 
 let bgController = new BackgroundController();
 bgController.showBg();
-var audioFirst = document.querySelectorAll(".myAudio")[0];
-var audioSecond = document.querySelectorAll(".myAudio")[1];
-var audioThird = document.querySelectorAll(".myAudio")[2];
-var audioFour = document.querySelectorAll(".myAudio")[3];
 
-// change morning-evening
-var btnChange = document.querySelector(".btnConvert");
-var btnChangeInstore = document.querySelector(".btnConvert.inStore");
-var dotBtnChange = document.querySelector(".btnConvert .dot");
-var dotBtnChangeInstore = document.querySelector(".btnConvert.inStore .dot");
-
-var isChangeSunNight = true;
+let btnChange = document.querySelector(".btnConvert");
+let dotBtnChange = document.querySelector(".btnConvert .dot");
 btnChange.addEventListener("click", function(){
-    if(isChangeSunNight){
-        // ban dem k mua
-        isChangeSunNight = false;
-        
-        dotBtnChange.style.transform = "translateX(-100%)";
-        btnChange.style.background = "rgba(255,255,255,0.1)";
-        // instore set
-        dotBtnChangeInstore.style.transform = "translateX(-100%)";
-        btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-
-        bgController.isNight = true;
-        bgController.showBg();
-    }else{
-        // bann ngay ko mua
-        isChangeSunNight = true;
-        
+    if(bgController.isNight) {        
         dotBtnChange.style.transform = "translateX(0%)";
         btnChange.style.background = "#f1a851";
-        // instore set
-        dotBtnChangeInstore.style.transform = "translateX(0%)";
-        btnChangeInstore.style.background = "#f1a851";
+
         bgController.isNight = false;
         bgController.showBg();
-    }
-})
-
-btnChangeInstore.addEventListener("click", function(){
-    if(isChangeSunNight){
-        // ban dem k mua
-        isChangeSunNight = false;
-        
-        dotBtnChangeInstore.style.transform = "translateX(-100%)";
-        btnChangeInstore.style.background = "rgba(255,255,255,0.1)";
-        // out store
+    }else{        
         dotBtnChange.style.transform = "translateX(-100%)";
         btnChange.style.background = "rgba(255,255,255,0.1)";
+
         bgController.isNight = true;
-        bgController.showBg();
-    }else{
-        // bann ngay ko mua
-        isChangeSunNight = true;
-        
-        dotBtnChangeInstore.style.transform = "translateX(0%)";
-        btnChangeInstore.style.background = "#f1a851";
-        // out store
-        dotBtnChange.style.transform = "translateX(0%)";
-        btnChange.style.background = "rgba(255,255,255,0.1)";
-        bgController.isNight = false;
         bgController.showBg();
     }
 })
 
+var audioCityRain = document.querySelectorAll(".myAudio")[0];
+var audioCityTraffic = document.querySelectorAll(".myAudio")[1];
+var audioMusic = document.querySelectorAll(".myAudio")[2];
+var audioKeyboard = document.querySelectorAll(".myAudio")[3];
 
 // open menu
-var btnMenuHeader = document.querySelector(".listIcon .btnMenu");
-var subMenuHeader = document.querySelector(".listIcon .subMenu");
-var isCheckMenuHeader = false;
+let btnMenuHeader = document.querySelector(".listIcon .btnMenu");
+let isCheckMenuHeader = false;
+let subMenuHeader = document.querySelector(".listIcon .subMenu");
 btnMenuHeader.addEventListener("click", function(){
-    if(isCheckMenuHeader){
+    if(isCheckMenuHeader) {
         isCheckMenuHeader = false;
         subMenuHeader.style.display = "none";
     }else{
@@ -92,13 +41,12 @@ btnMenuHeader.addEventListener("click", function(){
 })
 
 // full screen
-var btnFullScreen = document.querySelector(".listIcon .btnFullScreen");
-var objectFullScreen = document.querySelector("html");
-var isFullScreen = true;
+let btnFullScreen = document.querySelector(".btnFullScreen");
+let isFullScreen = true;
 btnFullScreen.addEventListener("click", function(){
     if(isFullScreen){
         isFullScreen = false;
-        objectFullScreen.requestFullscreen();
+        document.querySelector("html").requestFullscreen();
     }else{
         isFullScreen = true;
         document.exitFullscreen();
@@ -106,45 +54,36 @@ btnFullScreen.addEventListener("click", function(){
 })
 
 // body - dot out store
-var getDotCityRain = document.querySelector(".cityRain__dot");
-var getDotCityTraffic = document.querySelector(".cityTraffic__dot");
-var getDotEnter = document.querySelector(".enter__dot");
+let getDotCityRain = document.querySelector(".cityRain__dot");
+let getDotCityTraffic = document.querySelector(".cityTraffic__dot");
+let getDotEnter = document.querySelector(".enter__dot");
 
-var getSettingCityRain = document.querySelector(".cityRain__setting");
-var getSettingCityTraffic = document.querySelector(".cityTraffic__setting");
-var getSettingEnter = document.querySelector(".enter__setting");
+let getSettingCityRain = document.querySelector(".cityRain__setting");
+let getSettingCityTraffic = document.querySelector(".cityTraffic__setting");
 
-var getRangeCityRain = document.querySelector(".cityRain__range");
-var getRangeCityTraffic = document.querySelector(".cityTraffic__range");
-var getRangeEnter = document.querySelector(".enter__range");
+let getRangeCityRain = document.querySelector(".cityRain__range");
+let getRangeCityTraffic = document.querySelector(".cityTraffic__range");
 
-var isClickCityRain = true;
-var isClickCityTraffic = true;
-var isClickEnter = true;
+let isClickCityRain = true;
+let isClickCityTraffic = true;
 
 // click dot => range show
 getDotCityRain.addEventListener("click", function(){
     if(isClickCityRain){
-        // console.log(isClickCityRain);
-        // mua
-        // set default
         isClickCityRain = false;
-        audioFirst.src = "./assets/audio/rain_forest.mp3";
-        audioFirst.volume = 0.5;
+        audioCityRain.src = "./assets/audio/rain_forest.mp3";
+        audioCityRain.volume = 0.5;
         getRangeCityRain.value = 50;
         getRangeCityRain.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         soundRainRangeSetting.value = 50;
         soundRainRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         getRangeCityRain.style.display = "block";
-        // doi ban ngay co mua
-        // ngay true dem false
-        // bgVideoSunNoRain.src = "./assets/video/outStoreMorningRain.mp4";      
         bgController.isRaining = true;
         bgController.showBg();  
 
         // method
         getSettingCityRain.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // isClickCityRain = true;
                 if(isClickCityRain == false){
                     getRangeCityRain.style.display = "block";                  
@@ -158,7 +97,7 @@ getDotCityRain.addEventListener("click", function(){
             }
         })
         getDotCityRain.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 if(isClickCityRain == false){
                     getRangeCityRain.style.display = "block";                  
                 }
@@ -179,8 +118,7 @@ getDotCityRain.addEventListener("click", function(){
             var x = getRangeCityRain.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityRain.style.background = color;
-            audioFirst.volume = x/100;
-            // console.log(audioFirst.volume);
+            audioCityRain.volume = x/100;
             
             // load range in store
             getRangeCityRainInStore.style.background = color;
@@ -192,13 +130,12 @@ getDotCityRain.addEventListener("click", function(){
             soundRainRangeSetting.value = x;
         })                         
     }else{
-        // console.log(isClickCityRain);
         // ko mua
         isClickCityRain = true;
         getRangeCityRain.style.display = "none";
-        audioFirst.src = "";        
+        audioCityRain.src = "";        
         getSettingCityRain.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // getRangeCityRain.style.display = "block";                               
             }else{
                 getRangeCityRain.style.display = "none";
@@ -214,7 +151,7 @@ getDotCityRain.addEventListener("click", function(){
         })
         getDotCityRain.addEventListener("mouseout", function(){
             getRangeCityRain.style.display = "none";
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // getRangeCityRain.style.display = "block";                   
             }else{
                 getRangeCityRain.style.display = "none";
@@ -225,8 +162,7 @@ getDotCityRain.addEventListener("click", function(){
             var x = getRangeCityRain.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityRain.style.background = color;
-            audioFirst.volume = x/100;
-            // console.log(audioFirst.volume);                      
+            audioCityRain.volume = x/100;
         })
         bgController.isRaining = false;
         bgController.showBg();
@@ -239,21 +175,21 @@ getDotCityTraffic.addEventListener("click", function(){
     if(isClickCityTraffic){
         isClickCityTraffic = false;
         getRangeCityTraffic.style.display = "block";
-        audioSecond.src = "./assets/audio/city_traffic.mp3";
-        audioSecond.volume = 0.5;
+        audioCityTraffic.src = "./assets/audio/city_traffic.mp3";
+        audioCityTraffic.volume = 0.5;
         getRangeCityTraffic.value = 50;
         getRangeCityTraffic.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         soundCityTrafficRangeSetting.value = 50;
         soundCityTrafficRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';        
         getSettingCityTraffic.addEventListener("mouseout", function(){
-            if(audioSecond.volume > 0){
+            if(audioCityTraffic.volume > 0){
                 getRangeCityTraffic.style.display = "block";                   
             }else{
                 getRangeCityTraffic.style.display = "none";                                                                                   
             }
         })
         getDotCityTraffic.addEventListener("mouseout", function(){
-            if(audioSecond.volume > 0){
+            if(audioCityTraffic.volume > 0){
                 getRangeCityTraffic.style.display = "block";                   
             }else{
                 getRangeCityTraffic.style.display = "none";                                                                                   
@@ -263,7 +199,7 @@ getDotCityTraffic.addEventListener("click", function(){
             var x = getRangeCityTraffic.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityTraffic.style.background = color;
-            audioSecond.volume = x/100;
+            audioCityTraffic.volume = x/100;
             // in setting
             soundCityTrafficRangeSetting.style.background = color;
             soundCityTrafficRangeSetting.value = x; 
@@ -271,7 +207,7 @@ getDotCityTraffic.addEventListener("click", function(){
     }else{
         isClickCityTraffic = true;
         getRangeCityTraffic.style.display = "none";
-        audioSecond.src = "";
+        audioCityTraffic.src = "";
         getSettingCityTraffic.addEventListener("mouseout", function(){
             getRangeCityTraffic.style.display = "none";
         })
@@ -282,11 +218,6 @@ getDotCityTraffic.addEventListener("click", function(){
 })
 
 // INSTORE
-// video in store
-var bgVideoSunNoRainInstore = document.querySelector(".bg .bg__vdInStoreSunNoRain");
-var bgVideoSunRainInstore = document.querySelector(".bg .bg__vdInStoreSunRain");
-var bgVideoNightNoRainInstore = document.querySelector(".bg .bg__vdInStoreNightNoRain");
-var bgVideoNightRainInstore = document.querySelector(".bg .bg__vdInStoreNightRain");
 
 // block dot out store
 var getCityRainOutStore = document.querySelector(".cityRain");
@@ -301,7 +232,7 @@ getDotEnter.addEventListener("click", function(){
     // dem = false ; ko mua = true; ngay = true; mua = false
     // set default
     // tat tieng xe cọ :V
-    audioSecond.src = "";
+    audioCityTraffic.src = "";
     getRangeCityTraffic.style.display = "none";
     
     bgController.instore = true;
@@ -309,10 +240,6 @@ getDotEnter.addEventListener("click", function(){
     if(isClickCityRain == false){
         getRangeCityRainInStore.style.display = "block";
     }
-
-    // btn change ngay/dem
-    btnChange.style.display = "none";
-    btnChangeInstore.style.display = "block";
 
     // block out store
     getCityRainOutStore.style.display = "none";
@@ -328,13 +255,12 @@ getDotEnter.addEventListener("click", function(){
         var x = getRangeCityRainInStore.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         getRangeCityRainInStore.style.background = color;
-        audioFirst.volume = x/100;
-        // console.log(audioFirst.volume);                      
+        audioCityRain.volume = x/100;
     })
 
     //hover dot instore
     getDotCityRainInStore.addEventListener("mouseout", function(){
-        if(audioFirst.volume > 0){
+        if(audioCityRain.volume > 0){
             // getRangeCityRainInStore.style.display = "block";
             if(isClickCityRainInstore == false){
                 getRangeCityRainInStore.style.display = "block";                  
@@ -360,15 +286,12 @@ var getDotGoOut = document.querySelector(".enter__dot.instore");
 
 var getSettingCityRainInStore = document.querySelector(".cityRain__setting.instore");
 var getSettingKeyboardInStore = document.querySelector(".cityTraffic__setting.instore");
-var getSettingGoOut = document.querySelector(".enter__setting.instore");
 
 var getRangeCityRainInStore = document.querySelector(".cityRain.instore .cityRain__range");
 var getRangeKeyboardInStore = document.querySelector(".cityTraffic.instore .cityTraffic__range");
-var getRangeGoOut = document.querySelector(".enter.instore .enter__range");
 
 var isClickCityRainInstore = true;
 var isClickKeyboard = true;
-var isClickGoOut = true;
 
 // click dot instore => range show
 getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore(){    
@@ -376,8 +299,8 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         // mua
         // set default
         isClickCityRainInstore = false;
-        audioFirst.src = "./assets/audio/rain_forest.mp3";
-        audioFirst.volume = 0.5;
+        audioCityRain.src = "./assets/audio/rain_forest.mp3";
+        audioCityRain.volume = 0.5;
         getRangeCityRainInStore.value = 50;
         getRangeCityRainInStore.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         soundRainRangeSetting.value = 50;
@@ -391,7 +314,7 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
 
         // method
         getSettingCityRainInStore.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // isClickCityRainInstore = true;
                 // getRangeCityRainInStore.style.display = "block";
                 if(isClickCityRainInstore == false){
@@ -406,7 +329,7 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
             }
         })
         getDotCityRainInStore.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // getRangeCityRainInStore.style.display = "block";
                 if(isClickCityRainInstore == false){
                     getRangeCityRainInStore.style.display = "block";                  
@@ -428,8 +351,7 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
             var x = getRangeCityRainInStore.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityRainInStore.style.background = color;
-            audioFirst.volume = x/100;
-            // console.log(audioFirst.volume);
+            audioCityRain.volume = x/100;
             
             // load range out store
             getRangeCityRain.style.background = color;
@@ -445,9 +367,9 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         // ko mua
         isClickCityRainInstore = true;
         getRangeCityRainInStore.style.display = "none";
-        audioFirst.src = "";        
+        audioCityRain.src = "";        
         getSettingCityRainInStore.addEventListener("mouseout", function(){
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // getRangeCityRainInStore.style.display = "block";                               
             }else{
                 getRangeCityRainInStore.style.display = "none";
@@ -462,7 +384,7 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
         })
         getDotCityRainInStore.addEventListener("mouseout", function(){
             getRangeCityRainInStore.style.display = "none";
-            if(audioFirst.volume > 0){
+            if(audioCityRain.volume > 0){
                 // getRangeCityRainInStore.style.display = "block";                   
             }else{
                 getRangeCityRainInStore.style.display = "none";
@@ -473,8 +395,7 @@ getDotCityRainInStore.addEventListener("click", function clickDotCityRainInStore
             var x = getRangeCityRainInStore.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityRainInStore.style.background = color;
-            audioFirst.volume = x/100;
-            // console.log(audioFirst.volume);                      
+            audioCityRain.volume = x/100;
         })
         bgController.isRaining = false;
         bgController.showBg();     
@@ -486,21 +407,21 @@ getDotKeyboardInStore.addEventListener("click", function(){
     if(isClickKeyboard){
         isClickKeyboard = false;
         getRangeKeyboardInStore.style.display = "block";
-        audioFour.src = "./assets/audio/keyboard.mp3";
-        audioFour.volume = 0.5;
+        audioKeyboard.src = "./assets/audio/keyboard.mp3";
+        audioKeyboard.volume = 0.5;
         getRangeKeyboardInStore.value = 50;
         getRangeKeyboardInStore.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';
         soundKeyboardRangeSetting.value = 50;
         soundKeyboardRangeSetting.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';        
         getSettingKeyboardInStore.addEventListener("mouseout", function(){
-            if(audioFour.volume > 0){
+            if(audioKeyboard.volume > 0){
                 getRangeKeyboardInStore.style.display = "block";                   
             }else{
                 getRangeKeyboardInStore.style.display = "none";                                                                                   
             }
         })
         getDotKeyboardInStore.addEventListener("mouseout", function(){
-            if(audioFour.volume > 0){
+            if(audioKeyboard.volume > 0){
                 getRangeKeyboardInStore.style.display = "block";                   
             }else{
                 getRangeKeyboardInStore.style.display = "none";                                                                                   
@@ -510,7 +431,7 @@ getDotKeyboardInStore.addEventListener("click", function(){
             var x = getRangeKeyboardInStore.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeKeyboardInStore.style.background = color;
-            audioFour.volume = x/100;
+            audioKeyboard.volume = x/100;
 
             soundKeyboardRangeSetting.style.background = color;
             soundKeyboardRangeSetting.value = x;            
@@ -520,7 +441,7 @@ getDotKeyboardInStore.addEventListener("click", function(){
         getRangeKeyboardInStore.style.display = "none";
         soundKeyboardRangeSetting.style.background = "linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)";
         soundKeyboardRangeSetting.value = 0;
-        audioFour.src = "";
+        audioKeyboard.src = "";
         getSettingKeyboardInStore.addEventListener("mouseout", function(){
             getRangeKeyboardInStore.style.display = "none";
         })
@@ -534,17 +455,13 @@ getDotKeyboardInStore.addEventListener("click", function(){
 getDotGoOut.addEventListener("click", function(){
     // dem = false ; ko mua = true; ngay = true; mua = false
     // tắt tiếng keyboard
-    audioFour.src = "";
+    audioKeyboard.src = "";
     getRangeKeyboardInStore.style.display = "none";
     bgController.instore = false;
     bgController.showBg();
     if(isClickCityRainInstore == false){
         getRangeCityRain.style.display = "block";
     }
-
-    // btn change ngay/dem
-    btnChange.style.display = "block";
-    btnChangeInstore.style.display = "none";
 
     // block out store
     getCityRainOutStore.style.display = "block";
@@ -563,7 +480,7 @@ getDotGoOut.addEventListener("click", function(){
 
     // hover dot out store
     getDotCityRain.addEventListener("mouseout", function(){
-        if(audioFirst.volume > 0){
+        if(audioCityRain.volume > 0){
             if(isClickCityRain == false){
                 getRangeCityRain.style.display = "block";                  
             }
@@ -675,18 +592,17 @@ window.addEventListener("load", function(){
 
 // keyboard setting sound
 soundKeyboardRangeSetting.addEventListener("click", function(){
-    audioFour.src = "./assets/audio/keyboard.mp3";
-    audioFour.volume = 0;
+    audioKeyboard.src = "./assets/audio/keyboard.mp3";
+    audioKeyboard.volume = 0;
 })
 soundKeyboardRangeSetting.addEventListener("mousemove", function(){
     if(soundKeyboardRangeSetting.value > 0){
-        console.log(soundKeyboardRangeSetting.value);
         isClickKeyboard = false;
         getRangeKeyboardInStore.style.display = "block";        
         var x = soundKeyboardRangeSetting.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         soundKeyboardRangeSetting.style.background = color;
-        audioFour.volume = x/100;
+        audioKeyboard.volume = x/100;
         getRangeKeyboardInStore.style.background = color;
         getRangeKeyboardInStore.value = x;
         
@@ -694,36 +610,34 @@ soundKeyboardRangeSetting.addEventListener("mousemove", function(){
             var x = getRangeKeyboardInStore.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeKeyboardInStore.style.background = color;
-            audioFour.volume = x/100;
+            audioKeyboard.volume = x/100;
 
             soundKeyboardRangeSetting.style.background = color;
             soundKeyboardRangeSetting.value = x;            
         })
     }else{
         isClickKeyboard = true;
-        console.log(soundKeyboardRangeSetting.value);
         getRangeKeyboardInStore.style.display = "none";
         soundKeyboardRangeSetting.style.background = "linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)";
         soundKeyboardRangeSetting.value = 0;
-        audioFour.src = "";
+        audioKeyboard.src = "";
     }
 })
 
 // traffic setting sound
 soundCityTrafficRangeSetting.addEventListener("click", function(){
-    audioSecond.src = "./assets/audio/city_traffic.mp3";
-    audioSecond.volume = 0;    
+    audioCityTraffic.src = "./assets/audio/city_traffic.mp3";
+    audioCityTraffic.volume = 0;    
 })
 soundCityTrafficRangeSetting.addEventListener("mousemove", function(){
     // soundCityTrafficRangeSetting.value = 0;
     if(soundCityTrafficRangeSetting.value > 0){
-        console.log(soundCityTrafficRangeSetting.value);
         isClickCityTraffic = false;
         getRangeCityTraffic.style.display = "block";        
         var x = soundCityTrafficRangeSetting.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         soundCityTrafficRangeSetting.style.background = color;
-        audioSecond.volume = x/100;
+        audioCityTraffic.volume = x/100;
         getRangeCityTraffic.style.background = color;
         getRangeCityTraffic.value = x;
         
@@ -731,25 +645,24 @@ soundCityTrafficRangeSetting.addEventListener("mousemove", function(){
             var x = getRangeCityTraffic.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeCityTraffic.style.background = color;
-            audioSecond.volume = x/100;
+            audioCityTraffic.volume = x/100;
             // in setting
             soundCityTrafficRangeSetting.style.background = color;
             soundCityTrafficRangeSetting.value = x; 
         })
     }else{
         isClickCityTraffic = true;
-        console.log(soundCityTrafficRangeSetting.value);
         getRangeCityTraffic.style.display = "none";
         soundCityTrafficRangeSetting.style.background = "linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)";
         soundCityTrafficRangeSetting.value = 0;
-        audioSecond.src = "";
+        audioCityTraffic.src = "";
     }
 })
 
 // rain setting sound
 soundRainRangeSetting.addEventListener("click", function(){
-    audioFirst.src = "./assets/audio/rain_forest.mp3";
-    audioFirst.volume = 0;
+    audioCityRain.src = "./assets/audio/rain_forest.mp3";
+    audioCityRain.volume = 0;
 })
 soundRainRangeSetting.addEventListener("mousemove", function(){
     if(bgController.instore == true){
@@ -761,14 +674,14 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             var x = soundRainRangeSetting.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             soundRainRangeSetting.style.background = color;
-            audioFirst.volume = x/100;
+            audioCityRain.volume = x/100;
             getRangeCityRainInStore.style.background = color;
             getRangeCityRainInStore.value = x;        
             getRangeCityRainInStore.addEventListener("mousemove", function(){
                 var x = getRangeCityRainInStore.value;
                 var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
                 getRangeCityRainInStore.style.background = color;
-                audioFirst.volume = x/100;
+                audioCityRain.volume = x/100;
 
                 soundRainRangeSetting.style.background = color;
                 soundRainRangeSetting.value = x;            
@@ -778,18 +691,16 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             bgController.showBg();
         }else{
             isClickCityRainInstore = true;
-            console.log(soundRainRangeSetting.value);
             getRangeCityRainInStore.style.display = "none";
             soundRainRangeSetting.style.background = "linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)";
             soundRainRangeSetting.value = 0;
-            audioFirst.src = "";
+            audioCityRain.src = "";
             // ban ngay true // dem false
             bgController.isRaining = false;
             bgController.showBg();
         }        
         
-    }        
-    if(bgVideoSunNoRainInstore.style.zIndex == 1 && bgVideoSunRainInstore.style.zIndex == 1 && bgVideoNightNoRainInstore.style.zIndex == 1 && bgVideoNightRainInstore.style.zIndex == 1){
+    } else {
         // ngoai cua hang
         if(soundRainRangeSetting.value > 0){
             // troi mua
@@ -798,14 +709,14 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             var x = soundRainRangeSetting.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             soundRainRangeSetting.style.background = color;
-            audioFirst.volume = x/100;
+            audioCityRain.volume = x/100;
             getRangeCityRain.style.background = color;
             getRangeCityRain.value = x;        
             // getRangeCityRain.addEventListener("mousemove", function(){
             //     var x = getRangeCityRain.value;
             //     var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             //     getRangeCityRain.style.background = color;
-            //     audioFirst.volume = x/100;
+            //     audioCityRain.volume = x/100;
 
             //     soundRainRangeSetting.style.background = color;
             //     soundRainRangeSetting.value = x;            
@@ -815,8 +726,7 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
                 var x = getRangeCityRain.value;
                 var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
                 getRangeCityRain.style.background = color;
-                audioFirst.volume = x/100;
-                // console.log(audioFirst.volume);
+                audioCityRain.volume = x/100;
                 
                 // load range in store
                 getRangeCityRainInStore.style.background = color;
@@ -832,11 +742,10 @@ soundRainRangeSetting.addEventListener("mousemove", function(){
             bgController.showBg();
         }else{
             isClickCityRain = true;
-            console.log(soundRainRangeSetting.value);
             getRangeCityRain.style.display = "none";
             soundRainRangeSetting.style.background = "linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)";
             soundRainRangeSetting.value = 0;
-            audioFirst.src = "";
+            audioCityRain.src = "";
             // ban ngay true // dem false
             bgController.isRaining = false;
             bgController.showBg();
@@ -931,7 +840,7 @@ var getItemMusicChill = document.querySelectorAll(".sidebar__subSetting_listImg 
 
 window.addEventListener("load", function(){    
     getNameSong.innerHTML = songSleepy[currentSong].name;
-    audioThird.src = songSleepy[currentSong].path;
+    audioMusic.src = songSleepy[currentSong].path;
     // getItemMusicSleepy.click();
     getItemMusicSleepy.classList.add("itemClick");
     getItemMusicJazzy.classList.remove("itemClick");
@@ -944,7 +853,7 @@ window.addEventListener("load", function(){
 
 // function loadCurrentSong(){
 //     getNameSong.innerHTML = songSleepy[currentSong].name;
-//     audioThird.src = songSleepy[currentSong].path;
+//     audioMusic.src = songSleepy[currentSong].path;
 // }
 
 var isClickItemMusicSleepy = true;
@@ -954,16 +863,13 @@ var isClickItemMusicChill = false;
 getItemMusicSleepy.addEventListener("click",function(){
     if(isClickItemMusicSleepy = true){
         getNameSong.innerHTML = songSleepy[currentSong].name;
-        audioThird.src = songSleepy[currentSong].path;
+        audioMusic.src = songSleepy[currentSong].path;
         getItemMusicSleepy.classList.add("itemClick");
         getItemMusicJazzy.classList.remove("itemClick");
         getItemMusicChill.classList.remove("itemClick");
         isClickItemMusicSleepy = false;
         isClickItemMusicJazzy = true;
         isClickItemMusicChill = true;
-        console.log("sleepy " + isClickItemMusicSleepy);
-        console.log("jazzy " + isClickItemMusicJazzy);
-        console.log("chill " + isClickItemMusicChill);
         if(isClickBtnSong){
             isClickBtnSong = false;
         }else{
@@ -976,16 +882,13 @@ getItemMusicSleepy.addEventListener("click",function(){
 getItemMusicJazzy.addEventListener("click",function(){
     if(isClickItemMusicJazzy = true){
         getNameSong.innerHTML = songJazzy[currentSong].name;
-        audioThird.src = songJazzy[currentSong].path;
+        audioMusic.src = songJazzy[currentSong].path;
         getItemMusicSleepy.classList.remove("itemClick");
         getItemMusicJazzy.classList.add("itemClick");
         getItemMusicChill.classList.remove("itemClick");
         isClickItemMusicSleepy = true;
         isClickItemMusicJazzy = false;
         isClickItemMusicChill = true;
-        console.log("sleepy " + isClickItemMusicSleepy);
-        console.log("jazzy " + isClickItemMusicJazzy);
-        console.log("chill " + isClickItemMusicChill);
         if(isClickBtnSong){
             isClickBtnSong = false;
         }else{
@@ -998,16 +901,13 @@ getItemMusicJazzy.addEventListener("click",function(){
 getItemMusicChill.addEventListener("click",function(){
     if(isClickItemMusicChill = true){
         getNameSong.innerHTML = songChill[currentSong].name;
-        audioThird.src = songChill[currentSong].path;
+        audioMusic.src = songChill[currentSong].path;
         getItemMusicSleepy.classList.remove("itemClick");
         getItemMusicJazzy.classList.remove("itemClick");
         getItemMusicChill.classList.add("itemClick");
         isClickItemMusicSleepy = true;
         isClickItemMusicJazzy = true;
         isClickItemMusicChill = false;
-        console.log("sleepy " + isClickItemMusicSleepy);
-        console.log("jazzy " + isClickItemMusicJazzy);
-        console.log("chill " + isClickItemMusicChill);
         if(isClickBtnSong){
             isClickBtnSong = false;
         }else{
@@ -1025,8 +925,8 @@ getBtnPlay.addEventListener("click", function clickBtnSong(){
         // add class pause
         getBtnPlay.classList.add("fa-circle-pause");
         // play song
-        audioThird.play();
-        audioThird.volume = 0.5;
+        audioMusic.play();
+        audioMusic.volume = 0.5;
         // range song in setting sidebar
         getRangeVolumeSong.value = 50;
         getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)'       
@@ -1036,16 +936,15 @@ getBtnPlay.addEventListener("click", function clickBtnSong(){
             var x = getRangeVolumeSong.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeVolumeSong.style.background = color;
-            audioThird.volume = x/100;
+            audioMusic.volume = x/100;
         })
         getRangeVolumeSong.addEventListener("click", function(){
             var x = getRangeVolumeSong.value;
             var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
             getRangeVolumeSong.style.background = color;
-            audioThird.volume = x/100;
+            audioMusic.volume = x/100;
         })
-        // console.log(audioThird.ended)
-        audioThird.addEventListener("ended", function(){
+        audioMusic.addEventListener("ended", function(){
             getBtnNext.click();
         })
     }else{
@@ -1055,8 +954,8 @@ getBtnPlay.addEventListener("click", function clickBtnSong(){
         // delete class pause
         getBtnPlay.classList.remove("fa-circle-pause");
         // pause song
-        audioThird.pause();
-        audioThird.volume = 0;
+        audioMusic.pause();
+        audioMusic.volume = 0;
         // range song in setting sidebar
         getRangeVolumeSong.value = 0;
         getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)'
@@ -1087,13 +986,13 @@ getBtnNext.addEventListener("click", function (){
         getItemMusicChill.click();
     }
     
-    audioThird.play();
+    audioMusic.play();
     isClickBtnSong = false;
     // delete class play
     getBtnPlay.classList.remove("fa-circle-play");
     // add class pause
     getBtnPlay.classList.add("fa-circle-pause");
-    audioThird.volume = 0.5;
+    audioMusic.volume = 0.5;
     // range song in setting sidebar
     getRangeVolumeSong.value = 50;
     getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)'       
@@ -1103,13 +1002,13 @@ getBtnNext.addEventListener("click", function (){
         var x = getRangeVolumeSong.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         getRangeVolumeSong.style.background = color;
-        audioThird.volume = x/100;
+        audioMusic.volume = x/100;
     })
     getRangeVolumeSong.addEventListener("click", function(){
         var x = getRangeVolumeSong.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         getRangeVolumeSong.style.background = color;
-        audioThird.volume = x/100;
+        audioMusic.volume = x/100;
     })
 })
 
@@ -1137,13 +1036,13 @@ getBtnPrev.addEventListener("click", function(){
         getItemMusicChill.click();
     }    
     
-    audioThird.play();
+    audioMusic.play();
     isClickBtnSong = false;
     // delete class play
     getBtnPlay.classList.remove("fa-circle-play");
     // add class pause
     getBtnPlay.classList.add("fa-circle-pause");
-    audioThird.volume = 0.5;
+    audioMusic.volume = 0.5;
     // range song in setting sidebar
     getRangeVolumeSong.value = 50;
     getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 50%, rgba(255,255,255,0.1) 50%)';       
@@ -1153,24 +1052,24 @@ getBtnPrev.addEventListener("click", function(){
         var x = getRangeVolumeSong.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         getRangeVolumeSong.style.background = color;
-        audioThird.volume = x/100;
+        audioMusic.volume = x/100;
     })
     getRangeVolumeSong.addEventListener("click", function(){
         var x = getRangeVolumeSong.value;
         var color = "linear-gradient(90deg, #f3a952 " + x + "%, rgba(255,255,255,0.1) " + x + "%)";
         getRangeVolumeSong.style.background = color;
-        audioThird.volume = x/100;
+        audioMusic.volume = x/100;
     })  
 })
 
 getBtnMuteVolumeSong.addEventListener("click", function(){
-    audioThird.volume = 0;
+    audioMusic.volume = 0;
     getRangeVolumeSong.value = 0;
     getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 0%, rgba(255,255,255,0.1) 0%)'
 })
 
 getBtnMaxVolumeSong.addEventListener("click", function(){
-    audioThird.volume = 1;
+    audioMusic.volume = 1;
     getRangeVolumeSong.value = 100;
     getRangeVolumeSong.style.background = 'linear-gradient(90deg, #f3a952 100%, rgba(255,255,255,0.1) 100%)'
 })
